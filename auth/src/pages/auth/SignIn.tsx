@@ -2,12 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerAPI, signInAPI } from "../../API/authAPI";
+import { signInAPI } from "../../API/authAPI";
 import { useRecoilState } from "recoil";
-import { user } from "../../global/recoil";
+import { userIn } from "../../global/recoil";
 
 const SignIn = () => {
-  const [state, setState] = useRecoilState(user);
+  const [state, setState] = useRecoilState(userIn);
   const navigate = useNavigate();
   const schema = yup.object({
     email: yup.string().required(),
@@ -30,6 +30,8 @@ const SignIn = () => {
       navigate("/");
     });
   });
+
+  console.log(state);
 
   return (
     <div className="flex justify-center h-[100vh] items-center ">
