@@ -1,9 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
-import { channel, myConnection } from "../utils/connection";
-import amqp from "amqplib";
-
-const amqpServer = "amqp://localhost:5672";
+import { myConnection } from "../utils/connection";
 
 const prisma = new PrismaClient();
 

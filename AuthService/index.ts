@@ -1,13 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import auth from "./router/authRouter";
-import amqp from "amqplib";
-import { PrismaClient } from "@prisma/client";
 import { myConnection } from "./utils/connection";
-
-const amqpServer = "amqp://localhost:5672";
-
-const prisma = new PrismaClient();
 
 const app: Application = express();
 const port: number = 3344;

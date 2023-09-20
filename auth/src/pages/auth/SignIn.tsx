@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInAPI } from "../../API/authAPI";
-import { useRecoilState } from "recoil";
-import { userIn } from "../../global/recoil";
+
+import useStateData from "../../global/jotai";
 
 const SignIn = () => {
-  const [state, setState] = useRecoilState(userIn);
+  const [userState, setUserState] = useStateData();
+  console.log("shw me: ", userState);
+
   const navigate = useNavigate();
   const schema = yup.object({
     email: yup.string().required(),
@@ -26,12 +28,12 @@ const SignIn = () => {
     console.log(data);
 
     signInAPI(data).then((res) => {
-      setState(res);
+      setUserState(res);
       navigate("/");
     });
   });
 
-  console.log(state);
+  // console.log(state);
 
   return (
     <div className="flex justify-center h-[100vh] items-center ">

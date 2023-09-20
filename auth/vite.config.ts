@@ -11,7 +11,8 @@ export default defineConfig({
       filename: "authApp.js",
       exposes: {
         "./App": "./src/App.tsx",
-        "./State": "./src/global/state.tsx",
+        // "./State": "./src/global/state.tsx",
+        "./MGN": "./src/global/jotai.tsx",
       },
       shared: [
         "react",
@@ -24,6 +25,7 @@ export default defineConfig({
         "jwt-decode",
         "axios",
         "@hookform/resolvers",
+        "jotai",
       ],
     }),
   ],

@@ -1,10 +1,9 @@
-import { atom } from "recoil";
-import { recoilPersist } from "recoil-persist";
+import { useRecoilValue } from "recoil";
+import { userDetail } from "./recoil";
 
-const { persistAtom } = recoilPersist();
+const useData = () => {
+  const value = useRecoilValue(userDetail);
+  return { value };
+};
 
-export const userStateDetail = atom({
-  key: "userStateDetail",
-  default: "" || null || undefined,
-  effects_UNSTABLE: [persistAtom],
-});
+export default useData;

@@ -9,8 +9,10 @@ export default defineConfig({
     federation({
       name: "launchApp",
       remotes: {
-        authApp: "http://localhost:5599/assets/authApp.js",
-        stateApp: "http://localhost:5599/assets/stateApp.js",
+        authApp: "http://localhost:5500/assets/authApp.js",
+
+        // stateApp: "http://localhost:5500/assets/stateApp.js",
+        // exposeApp: "http://localhost:5500/assets/exposeApp.js",
       },
       shared: ["react", "react-dom"],
     }),

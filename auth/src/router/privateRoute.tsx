@@ -1,30 +1,21 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useRecoilValue, useRecoilState } from "recoil";
-import { userIn, userDetail } from "../global/recoil";
-import jwt_decode from "jwt-decode";
-import { userStateDetail } from "../global/state";
+import useStateData from "../global/jotai";
 
 const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
-  const userState = useRecoilValue(userIn);
-  const [detail, setDetail] = useRecoilState(userDetail);
+  const [userState] = useStateData();
+  console.log("reading State: ", userState);
 
-  const [usersDetail, setUsersDetail] = useRecoilState(userStateDetail);
+  const [state, setState] = useState(JSON.parse(localStorage.getItem("view")!));
 
-  if (userState) {
-    let data: any = jwt_decode(userState);
-    setDetail(data?.id);
-    setUsersDetail(data?.id);
-  }
+  useEffect(() => {
+    setState(JSON.parse(localStorage.getItem("view")!));
+  });
+
+  console.log("Please show: ", state);
 
   return (
-    <div>
-      {detail && usersDetail ? (
-        <div>{children}</div>
-      ) : (
-        <Navigate to="/sign-in" />
-      )}
-    </div>
+    <div>{state ? <div>{children}</div> : <Navigate to="/sign-in" />}</div>
   );
 };
 
